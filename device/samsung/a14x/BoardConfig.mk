@@ -1,0 +1,41 @@
+#
+# Copyright (C) 2026 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+DEVICE_PATH := device/samsung/a14x
+
+# Inherit from the common tree
+include device/samsung/s5e8535-common/BoardConfigCommon.mk
+
+# Inherit from the a14x vendor
+include vendor/samsung/a14x/BoardConfigVendor.mk
+
+# Board
+BOARD_NAME := SRPVG28A003
+
+# Kernel
+TARGET_KERNEL_CONFIG := a14x_defconfig
+
+# Kernel modules
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD)
+BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+RECOVERY_KERNEL_MODULES := $(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD)
+
+# OTA assert
+TARGET_OTA_ASSERT_DEVICE := a14x
+
+# Prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop

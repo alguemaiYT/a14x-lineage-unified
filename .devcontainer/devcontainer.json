@@ -1,0 +1,15 @@
+{
+  "name": "a14x LineageOS Unified Workspace",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "echo 'CODESPACES ACTIVE: Always stop this instance when done: gh codespace stop'"
+}

@@ -1,0 +1,49 @@
+#
+# Copyright (C) 2026 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+DEVICE_PATH := device/samsung/a14x
+
+VENDOR_PATH := vendor/samsung/a14x
+
+# Inherit from the a14x vendor
+$(call inherit-product, vendor/samsung/a14x/a14x-vendor.mk)
+
+# Inherit from the common tree
+$(call inherit-product, device/samsung/s5e8535-common/common.mk)
+
+# Audio
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml
+
+# kernel firmares
+PRODUCT_COPY_FILES += \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/ili7807_a14x.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/ili7807_a14x.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_2ndbr_tianma.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/nt36672_a14x_2ndbr_tianma.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_2ndbr_tianma_mp.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/nt36672_a14x_2ndbr_tianma_mp.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_tianma.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/nt36672_a14x_tianma.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_tianma_mp.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/nt36672_a14x_tianma_mp.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/td4160_a13x_boe.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/td4160_a13x_boe.bin
+
+PRODUCT_COPY_FILES += \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/ili7807_a14x.bin:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor/firmware/ili7807_a14x.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_2ndbr_tianma.bin:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor/firmware/nt36672_a14x_2ndbr_tianma.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_2ndbr_tianma_mp.bin:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor/firmware/nt36672_a14x_2ndbr_tianma_mp.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_tianma.bin:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor/firmware/nt36672_a14x_tianma.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/nt36672_a14x_tianma_mp.bin:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor/firmware/nt36672_a14x_tianma_mp.bin \
+    $(VENDOR_PATH)/proprietary/vendor/firmware/td4160_a13x_boe.bin:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor/firmware/td4160_a13x_boe.bin
+
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
